@@ -1,1 +1,1 @@
-web: gunicorn pythonProject4.wsgi --log-file -
+web: gunicorn farmersfriend.wsgi --log-file -
