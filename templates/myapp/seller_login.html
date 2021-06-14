@@ -1,0 +1,33 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}
+    Seller Login
+{% endblock %}
+{% block body %}
+<body>
+    <center>
+    <h1>Seller Login</h1>
+    <div class="container">
+    <form role="form" name="frm" method="post" action="{% url 'seller_login' %}" >
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="un">E-mail :</label>
+            <input class="form-control" type="text" name="un" id="un" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter email id" required oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}" required>
+        </div>
+        <div class="form-group">
+            <label for="pwd">Password :</label>
+            <input class="form-control" type="password" name="pwd" id="pwd" placeholder="Password" required>
+        </div>
+        <button type="submit"
+        class="btn btn-info" id="bt" name="bt">Login</button>
+        <button type="reset"
+        class="btn btn-info" id="rt" name="rt">Reset</button>
+
+    </form>
+    </div>
+        {% autoescape off %}{{ msg1 }}{% endautoescape %}
+    </center>
+
+
+</body>
+{% endblock %}

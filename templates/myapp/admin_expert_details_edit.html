@@ -1,0 +1,34 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}Expert Details Update{% endblock %}
+{% block body %}
+<center>
+    <h1>Expert Details Edit</h1>
+    <div class="container">
+     <form role="form" name="frm" action="{% url 'admin_expert_details_edit'%}" method="post">
+        {% csrf_token %}
+
+        <div class="form-group">
+                <label for="fname">First Name :</label>
+                <input class="form-control" type="text" name="fname" id="fname" value="{{od.fname}}" required>
+            </div>
+            <div class="form-group">
+                <label for="lname">Last Name :</label>
+                <input class="form-control" type="text" name="lname" id="lname" value="{{od.lname}}" required>
+            </div>
+            <div class="form-group">
+                <label for="contact">Contact :</label>
+                <input class="form-control" type="text" name="contact" id="contact" value="{{od.contact}}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email :</label>
+                <input class="form-control" type="text" name="email" id="email" value="{{od.email}}" required>
+            </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Update</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+            <input type="hidden" name="s_id" value="{{s_id}}">
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

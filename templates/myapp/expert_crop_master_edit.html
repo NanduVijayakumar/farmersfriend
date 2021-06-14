@@ -1,0 +1,43 @@
+{% extends 'myapp/expert_base.html' %}
+{% load static %}
+{% block title %}Crop Details Update{% endblock %}
+{% block body %}
+<center>
+    <h1>Crop Details Edit</h1>
+    <div class="container">
+     <form role="form" name="frm" action="{% url 'expert_crop_master_edit'%}" method="post">
+        {% csrf_token %}
+
+       <div class="form-group" id="div1">
+                <label for="crop_type_id">Crop Type</label>
+                <select  name="crop_type_id" id="crop_type_id" class="form-control" required="required">
+                    <option value="0">Select Crop Type</option>
+                    {% for h in type_list%}
+                        <option value="{{h.id}}">{{h.type_name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="crop_name">Name :</label>
+                <input class="form-control" type="text" name="crop_name" id="crop_name" value="{{shd.crop_name}}" required>
+            </div>
+            <div class="form-group">
+                <label for="crop_descp">Description :</label>
+                <textarea class="form-control"  name="crop_descp" id="crop_descp"  required>{{shd.crop_descp}}</textarea>
+            </div>
+            <div class="form-group">
+                <label for="crop_sname">crop_sname :</label>
+                <input class="form-control" type="text" name="crop_sname" id="crop_sname" value="{{shd.crop_sname}}" required>
+            </div>
+            <div class="form-group">
+                <label for="crop_area">crop_area :</label>
+                <textarea class="form-control" name="crop_area" id="crop_area"  required>{{shd.crop_area}}</textarea>
+            </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Update</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+            <input type="hidden" name="s_id" value="{{s_id}}">
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

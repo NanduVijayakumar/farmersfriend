@@ -1,0 +1,59 @@
+ <html>
+<head>
+    <title>PDF Output</title>
+    <style>
+@page{
+    size: A4 landscape;
+    margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+    @top-center{
+    content: "Farmers Friend";
+    }
+    @bottom-right{
+           content: "Page "counter(page)" of " counter(pages);
+    }
+    };
+
+
+    </style>
+</head>
+<body>
+<p>Transaction Details</p>
+<table class="table">
+            <thead>
+            <tr style=" padding: 6px; background-color: #a5a5d9;">
+                <th style="padding:5px; margin:0;text-align: center; ">No.</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Product</th>
+                <th style="padding:5px; margin:0;text-align: center; ">User</th>
+                <th style="padding:5px; margin:0;text-align: center; ">amount</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Address</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Date / Time</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Status</th>
+
+            </tr>
+            </thead>
+             <tbody>
+            {% for cs in transaction_list %}
+
+            <tr>
+                <td style="padding:5px; margin:0;text-align: center; ">{{ forloop.counter }}</td>
+                {% for h in product_list %}
+                    {% if h.id == cs.product_id %}
+					    <td style="padding:5px; margin:0;text-align: center; ">{{ h.p_name }}</td>
+				    {% endif %}
+			    {% endfor %}
+                {% for h in user_list %}
+                    {% if h.user_id == cs.user_id %}
+					    <td style="padding:5px; margin:0;text-align: center; ">{{ h.fname }} {{ h.lname }}</td>
+				    {% endif %}
+			    {% endfor %}
+                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.amt }}</td>
+                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.addr }}</td>
+                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.dt }} / {{ cs.tm }}</td>
+                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.status }}</td>
+            </tr>
+
+            {% endfor %}
+             <tbody>
+        </table>
+</body>
+</html>

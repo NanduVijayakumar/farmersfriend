@@ -1,0 +1,53 @@
+{% extends 'myapp/user_base.html' %}
+{% load static %}
+{% block title %}Crop Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Crop Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+         <input class="form-control" type="hidden" name="district_id" id="district_id" value="{{district_id}}" required>
+        <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th>No.</th>
+                <th>Type</th>
+                <th>Name</th>
+                <th>S Name</th>
+                <th>Description</th>
+                <th>Area</th>
+            </tr>
+            </thead>
+            {% for pd in crop_list %}
+            <tbody>
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% for h in type_list%}
+                {% if h.id == pd.crop_type_id%}
+                <td>{{ h.type_name }}</td>
+                {%endif%}
+                {% endfor %}
+                <td>{{ pd.crop_name }} </td>
+                <td>{{ pd.crop_sname }}</td>
+                <td>{{ pd.crop_descp }}</td>
+                <td>{{ pd.crop_area }}</td>
+                <td>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_pics_view?crop_id={{ pd.id }}'">Pics</button>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_variety_view?crop_id={{ pd.id }}'">Varieties</button>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_cultivation_view?crop_id={{ pd.id }}'">Cultivation</button>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_fertilizer_view?crop_id={{ pd.id }}'">Fertilizer</button>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_pesticides_view?crop_id={{ pd.id }}'">Pesticides</button>
+                    <button type="button" class="btn btn-info p-1" onclick="location.href='../user_crop_disease_view?crop_id={{ pd.id }}'">Diseases</button>
+
+                </td>
+
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

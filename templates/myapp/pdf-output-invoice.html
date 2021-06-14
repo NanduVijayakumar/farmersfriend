@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>PDF Output</title>
+    <style>
+@page{
+    size: "A4";
+    margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+
+    @top-center{
+    content: "Farmers Friend";
+    }
+    @bottom-right{
+           content: "Page "counter(page)" of " counter(pages);
+    }
+    };
+    td{
+    padding:10px
+    }
+
+    </style>
+</head>
+<body>
+<div>
+<h2 style="text-align:center;text-decoration:underline">Invoice</h2>
+</div>
+<!--  <table class="table table-striped table-bordered">-->
+<!--            <thead>-->
+<!--            <tr>-->
+
+<!--                <th style="padding:5px; margin:0;text-align: center; ">Product</th>-->
+<!--                <th style="padding:5px; margin:0;text-align: center; ">User</th>-->
+<!--                <th style="padding:5px; margin:0;text-align: center; ">Address</th>-->
+<!--                <th style="padding:5px; margin:0;text-align: center; ">Date / Time</th>-->
+<!--                <th style="padding:5px; margin:0;text-align: center; ">Amount</th>-->
+
+
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr>-->
+
+<!--                {% for h in product_list %}-->
+<!--                    {% if h.id == cs.product_id %}-->
+<!--					    <td style="padding:5px; margin:0;text-align: center; ">{{ h.p_name }}</td>-->
+<!--				    {% endif %}-->
+<!--			    {% endfor %}-->
+<!--                {% for h in user_list %}-->
+<!--                    {% if h.user_id == cs.user_id %}-->
+<!--					    <td style="padding:5px; margin:0;text-align: center; ">{{ h.fname }} {{ h.lname }}</td>-->
+<!--				    {% endif %}-->
+<!--			    {% endfor %}-->
+
+<!--                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.addr }}</td>-->
+<!--                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.dt }} / {{ cs.tm }}</td>-->
+<!--                <td style="padding:5px; margin:0;text-align: center; ">{{ cs.amt }}</td>-->
+
+
+
+
+<!--            </tr>-->
+<!--            <tbody>-->
+
+<!--        </table>-->
+<div>
+ {% for h in user_list %}
+                    {% if h.user_id == cs.user_id %}
+    <td style="padding:5px; margin:0;text-align: center;font-weight: bold; ">Billing Address:<br><br>{{ h.fname }} {{ h.lname }}</td><br>
+				    {% endif %}
+			    {% endfor %}
+</div>
+<td style="padding:5px; margin:0;text-align: center; ">{{ cs.addr }}</td><br><br>
+
+<td style="padding:5px; margin:0;text-align: center; ">Date of Purchase:<br><br>{{ cs.dt }} / {{ cs.tm }}</td><br><br>
+
+ {% for h in product_list %}
+                    {% if h.id == cs.product_id %}
+					    <h3 style="padding:5px; margin:0; ">
+                            Description: {{ h.p_name }}
+                        </h3>
+				    {% endif %}
+			    {% endfor %}
+<h3>
+    Price: {{ cs.amt }}
+</h3>
+<td style="padding:5px; margin:0;text-align: center; ">Sold by:<br><br> Appario International<br>43st floor, Ambady appartment<br>Kerala<br>682016</td><br>
+<h4 style="text-align:center;text-align: right">Signature</h4>
+</body>
+</html>

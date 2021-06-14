@@ -1,0 +1,41 @@
+{% extends 'myapp/expert_base.html' %}
+{% load static %}
+{% block title %} Crop Fertilizer Add{% endblock %}
+{% block body %}
+
+<center>
+    <h2><font color="#366092">Crop Fertilizer Add</font></h2>
+<div class="container">
+    <form name="frm" action="{% url 'expert_crop_fertilizer_add' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="form-group">
+                <label for="f_type">Fertilizer Type :</label>
+                <input class="form-control" type="text" name="f_type" id="f_type" value="" required>
+            </div>
+         <div class="form-group">
+                <label for="f_name">Name  :</label>
+                <input class="form-control" type="text" name="f_name" id="f_name" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="descp">Description :</label>
+                <textarea class="form-control"  name="descp" id="descp"  required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="application">application :</label>
+                <textarea class="form-control"  name="application" id="application"  required></textarea>
+            </div>
+
+
+        <div class="form-group">
+            <label for="document">Picture</label>
+            <input class="form-control" type="file" name="document" id="document">
+        </div>
+        <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        {{msg}}
+        <input type="hidden"  name="crop_id" value="{{crop_id}}" >
+
+    </form>
+</div>
+</center>
+{% endblock %}

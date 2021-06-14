@@ -1,0 +1,55 @@
+{% extends 'myapp/user_base.html' %}
+{% load static %}
+{% block title %}Transaction Details{% endblock %}
+{% block body %}
+<center>
+    <h1>Transaction Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+        <table class="table table-light">
+            <thead class="table-dark">
+            <tr>
+                <th>Sl.</th>
+                <th>Product</th>
+                <th>User</th>
+                <th>Address</th>
+                <th>Date / Time</th>
+                <th>Amount</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+            </thead>
+            {% for cs in transaction_list %}
+            <tbody>
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% for h in product_list %}
+                    {% if h.id == cs.product_id %}
+					    <td>{{ h.p_name }}</td>
+				    {% endif %}
+			    {% endfor %}
+                {% for h in user_list %}
+                    {% if h.user_id == cs.user_id %}
+					    <td>{{ h.fname }} {{ h.lname }}</td>
+				    {% endif %}
+			    {% endfor %}
+
+                <td>{{ cs.addr }}</td>
+                <td>{{ cs.dt }} / {{ cs.tm }}</td>
+                <td>{{ cs.amt }}</td>
+                <td>{{ cs.status }}</td>
+                {% if cs.status == "Payment Success" %}
+                <td><a href='../export_pdf_invoice?product_id={{ cs.id }}'>Print</a></td>
+                {% endif %}
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+
+    </form>
+    </div>
+
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

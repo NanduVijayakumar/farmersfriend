@@ -1,0 +1,59 @@
+{% extends 'myapp/base.html' %}
+{% load static %}
+{% block title %}New User Registration{% endblock %}
+{% block body %}
+<center>
+    <h2>New User Registration</h2>
+	<div class="container">
+    <form role="form" name="frm" action="{% url 'user_details_add' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+			<label for="fname">Name</label>
+	        <input class="form-control" type="text"  id="fname" title="only alphabet with space is allowed" name="fname" pattern="[a-zA-Z ]+" oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}" placeholder="First Name" required><br>
+			<input class="form-control" type="text"  id="lname" title="only alphabet with space is allowed" name="lname" pattern="[a-zA-Z ]+" oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}" placeholder="Last Name" required>
+		</div>
+        <div class="form-group">
+			<label for="fname">Kissan card number</label>
+	        <input class="form-control" type="text"  maxlength="16" id="kcno" name="kcno" pattern="[0-9]{16}" placeholder="Kissan card number" oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}" required="required">
+		</div>
+	    <div class="form-group">
+            <label>Gender :</label>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender1" name="gender" value="Male" >
+  				<label class="custom-control-label" for="gender1">Male</label>
+			</div>
+			<div class="custom-control custom-radio custom-control-inline">
+  				<input type="radio" class="custom-control-input" id="gender2" name="gender" value="Female">
+  				<label class="custom-control-label" for="gender2">Female</label>
+			</div>
+		</div>
+        <div class="form-group">
+			<label for="contact">Age</label>
+	        <input type="text" maxlength="3" class="form-control" id="age" name="age"  placeholder="Age">
+		</div>
+
+	    <div class="form-group">
+			<label for="addr">Address</label>
+	        <input class="form-control" type="text"  id="addr" name="addr" placeholder="Street" ><br>
+            <input type="text" maxlength="6" class="form-control" id="pin" name="pin" pattern="[0-9]{6}" placeholder="pin" oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}">
+		</div>
+	    <div class="form-group">
+			<label for="contact">Contact Number</label>
+	        <input type="text"  maxlength="10" title="Please enter a valid phone number with 10 digit" pattern="^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$" oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}" class="form-control" id="contact" name="contact" placeholder="Enter contact number" required>
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label>
+	        <input type="email" class="form-control" id="email" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Enter email id" required oninput="if (typeof this.reportValidity === 'function') {this.reportValidity();}"></td>
+		</div>
+        <div class="form-group">
+			<label for="pwd">Password</label>
+	        <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Password" required></td>
+		</div>
+	    <button type="submit" class="btn btn-info" id="bt" name="bt">Register</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+	    </table><br>
+    </form>
+	{{msg}}
+	</div>
+</center>
+{% endblock %}

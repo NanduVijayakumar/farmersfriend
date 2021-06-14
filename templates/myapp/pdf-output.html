@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>PDF Output</title>
+    <style>
+@page{
+    size: "A4";
+    margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+
+    @top-center{
+    content: "Farmers Friend";
+    }
+    @bottom-right{
+           content: "Page "counter(page)" of " counter(pages);
+    }
+    };
+    td{
+    padding:10px
+    }
+
+    </style>
+</head>
+<body>
+<h2>User Details</h2>
+<table class="table table-striped table-bordered">
+            <thead class="thead">
+            <tr style=" padding: 6px; background-color: #a5a5d9;">
+                <th style="padding:5px; margin:0;text-align: center; ">No</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Name</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Kissan card number</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Gender</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Age</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Address</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Pin</th>
+                <th style="padding:5px; margin:0;text-align: center; ">E-mail</th>
+                <th style="padding:5px; margin:0;text-align: center; ">Contact</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for pd in myapp %}
+            <tr>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ forloop.counter }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.fname }} {{ pd.lname }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.kcno }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.gender }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.age }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.addr }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.pin }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.email }}</td>
+                <td style="padding:6px; margin:0;text-align: center; ">{{ pd.contact }}</td>
+            </tr>
+            {% endfor %}
+            <tbody>
+
+        </table>
+
+</body>
+</html>

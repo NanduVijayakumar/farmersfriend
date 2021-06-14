@@ -1,0 +1,29 @@
+{% extends 'myapp/admin_base.html' %}
+{% load static %}
+{% block title %}Crop Type Add{% endblock %}
+{% block body %}
+<center>
+    <h1>Crop Type Add</h1>
+     <div class="container">
+        <div class="row">
+        <div class="col-md-4">
+        </div>
+        <div class="col-md-4">
+
+        <form role="form" name="frm" action="{% url 'admin_crop_type_add'%}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="type_name">crop Type :</label>
+                <input class="form-control" type="text" name="type_name" id="type_name" value="type_name" required>
+            </div>
+            <button type="submit" class="btn btn-info" id="bt" name="bt">Add</button>
+            <button type="reset" class="btn btn-info" id="rt" name="rt">Clear</button>
+        </form>
+             </div>
+             <div class="col-md-4">
+            </div>
+         </div>
+     </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}

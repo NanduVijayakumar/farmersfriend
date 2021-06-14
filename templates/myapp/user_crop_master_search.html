@@ -1,0 +1,20 @@
+{% extends 'myapp/user_base.html' %}
+{% load static %}
+{% block title %}Crop Master Search{% endblock %}
+{% block body %}
+<center>
+    <h2><font color="#366092">Crop Master Search</font></h2>
+    <div class="container">
+    <form name="frm"  role="form" action="{% url 'user_crop_master_search' %}" method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="query">Query</label>
+                <input class="form-control" type="text" name="query" placeholder="query" id="query">
+            </div>
+        <button type="submit" class="btn btn-info" id="bt" name="bt">Search</button>
+        <button type="reset" class="btn btn-info" id="rt" name="rt">Reset</button>
+        {{msg}}
+        </form>
+    </div>
+</center>
+{% endblock %}

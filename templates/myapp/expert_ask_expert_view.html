@@ -1,0 +1,52 @@
+{% extends 'myapp/expert_base.html' %}
+{% load static %}
+{% block title %}Ask Expert{% endblock %}
+{% block body %}
+<center>
+    <h1>Ask Expert Details</h1>
+    <div class="container">
+    <form role="form" name="frm" action="" method="post">
+        {% csrf_token %}
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th>No.</th>
+                <th>User</th>
+                <th>Message</th>
+                <th>Date / Time</th>
+                <th>Answer</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            {% for cs in chat_list %}
+            <tbody>
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                {% for h in user_list %}
+                    {% if h.user_id == cs.user_id %}
+					    <td>{{ h.fname }}{{ h.lname }}</td>
+				    {% endif %}
+			    {% endfor %}
+                <td>{{ cs.question }}</td>
+                <td>{{ cs.dt }} / {{ cs.tm }}</td>
+                <td>{{ cs.answer }}</td>
+                <td>
+                    {% if cs.status != 'replied'%}
+                    <button type="button" class="btn btn-warning p-1" onclick="location.href='../expert_ask_expert_reply?id={{ cs.id }}'">Reply</button>
+                    {%else%}
+                    <button type="button" class="btn p-1" onclick="">Answered</button>
+                    {% endif %}
+
+                </td>
+
+
+            </tr>
+            <tbody>
+            {% endfor %}
+        </table>
+
+    </form>
+    </div>
+    <h3>{{msg}}</h3>
+</center>
+{% endblock %}
