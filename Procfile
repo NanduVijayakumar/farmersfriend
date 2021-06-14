@@ -1,1 +1,1 @@
-web: gunicorn farmers-friend.wsgi --log-file -
+web: gunicorn farmersfriend.wsgi --log-file -
